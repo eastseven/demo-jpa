@@ -42,6 +42,12 @@ public class Category extends BaseEntity {
     @Column(name = "category_level", columnDefinition = "tinyint not null default 1 comment '分类等级'")
     private int level = 1;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "t_category_product",
+            joinColumns = @JoinColumn(name = "c_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "id"))
+    private List<Product> products = Lists.newArrayList();
+
     @Override
     public Long getId() {
         return super.getId();

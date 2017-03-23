@@ -3,6 +3,7 @@ package cn.eastseven.jpa;
 import cn.eastseven.RepositoryTestsParent;
 import cn.eastseven.jpa.entity.Category;
 import cn.eastseven.jpa.repository.CategoryRepository;
+import cn.eastseven.jpa.repository.ProductRepository;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -17,6 +18,9 @@ public class CategoryRepositoryTests extends RepositoryTestsParent {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Test //级联添加
     public void testAdd() {
