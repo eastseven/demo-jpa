@@ -2,6 +2,7 @@ package cn.eastseven.jpa;
 
 import cn.eastseven.RepositoryTestsParent;
 import cn.eastseven.jpa.entity.Category;
+import cn.eastseven.jpa.entity.QCategory;
 import cn.eastseven.jpa.repository.CategoryRepository;
 import cn.eastseven.jpa.repository.ProductRepository;
 import com.google.common.collect.Lists;
@@ -9,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by dongqi on 17/3/9.
@@ -37,7 +42,10 @@ public class CategoryRepositoryTests extends RepositoryTestsParent {
         lvB.getChildren().add(lvB2);
 
         root.setChildren(Lists.newArrayList(lvA, lvB));
+
+        assertNull(root.getId());
         categoryRepository.save(root);
+        assertNotNull(root.getId());
 
         log.debug("{}, {}", root, categoryRepository.count());
 
@@ -50,5 +58,10 @@ public class CategoryRepositoryTests extends RepositoryTestsParent {
         Assert.assertNotSame(0L, count);
 
         categoryRepository.findAll().forEach(category -> log.debug("{}, children={}", category, category.getChildren().size()));
+
+        List<Category> queryResult = Lists.newArrayList(categoryRepository.findAll(QCategory.category.name.like("%电脑%")));
+        assertNotNull(queryResult);
+        assertFalse(queryResult.isEmpty());
+        queryResult.forEach(category -> log.info("\t-----\t{}", category.getName()));
     }
 }
