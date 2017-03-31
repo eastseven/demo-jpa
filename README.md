@@ -31,3 +31,7 @@
   --- 添加如下内容 止----
   ```
 + 执行 ```git push all --all``` 即可一次同时*push*到多个*git*仓库
+
+### 参考引用
+
+- [Spring Boot JPA - Querydsl](https://lufficc.com/blog/spring-boot-jpa-querydsl)
