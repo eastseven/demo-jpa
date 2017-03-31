@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,15 +46,5 @@ public class Category extends BaseEntity {
             joinColumns = @JoinColumn(name = "c_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "id"))
     private List<Product> products = Lists.newArrayList();
-
-    @Override
-    public Long getId() {
-        return super.getId();
-    }
-
-    @Override
-    public Date getCreateTime() {
-        return super.getCreateTime();
-    }
 
 }

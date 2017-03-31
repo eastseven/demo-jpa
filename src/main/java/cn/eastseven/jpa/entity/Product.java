@@ -19,18 +19,6 @@ import java.util.List;
 @Table(name = "t_product", indexes = {@Index(name = "idx_product_status", columnList = "product_status")})
 public class Product extends BaseEntity {
 
-//    public Product() {
-//    }
-//
-//    public Product(String name, String image, BigDecimal price, String overview, Status status, List<Category> categoryList) {
-//        this.name = name;
-//        this.image = image;
-//        this.price = price;
-//        this.overview = overview;
-//        this.status = status;
-//        this.categoryList = categoryList;
-//    }
-
     @ManyToMany
     @JoinTable(name = "t_category_product",
             joinColumns = @JoinColumn(name = "p_id", referencedColumnName = "id"),
